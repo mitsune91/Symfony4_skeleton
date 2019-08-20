@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GrumpyGnomeController!{% endblock %}
+
+{% block body %}
+    <header>
+        <div class="container">
+
+            <h1>Disq'Home</h1>
+
+            <h3 style="color: white;">Evenements :</h3>
+            {% for event in evenement %}
+                <a href="{{ path('evenement_show',{'id':event.id}) }}" class="event-link">
+                    <div class="card" style="width: 20rem; height: 10rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ event.type }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ event.dateDebut | date('d/m/Y') }}</h6>
+                            <p class="card-text">{{ event.description }}.</p>
+                            <p class="card-text"><em>{{ event.getArtisteId() }}</em>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+
+            {% endfor %}
+
+            {% for art in artiste  %}
+                <p>{{ art.name }}</p>
+            {% endfor %}
+        </div>
+
+
+
+    </header>
+{% endblock %}
+{% block stylesheets %}
+    <style>
+        header {
+            background: url("{{ asset('Images/black-background-costume-dark-1097456.jpeg') }}");
+            min-height: 100vh;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        header h1 {
+            color: white;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .card {
+            margin: .2em;
+            background-color: rgba(0, 0, 0, .5) !important;
+            width: 100%;
+        }
+
+        .card em {
+            color: #ff4265;
+        }
+
+        .card-text button {
+            margin-left: 3em;
+
+        }
+
+        .event-link {
+            color: white;
+            margin: 0;
+
+        }
+
+        .event-link:hover {
+            text-decoration: none;
+            color: white;
+        }
+
+    </style>
+{% endblock %}
+
+
+

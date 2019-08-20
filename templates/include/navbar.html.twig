@@ -1,0 +1,46 @@
+<nav class="navbar">
+    <ul class="navbar-container">
+        <li class="navbar-item"><a href="/">Home</a></li>
+        <li class="navbar-item"><a href="/artiste">Artistes</a></li>
+        <li class="navbar-item"><a href="/evenement">Evenements</a></li>
+        <li class="navbar-item"><a href="/produit">Produits</a></li>
+        <li class="navbar-item"><a href="/actualite">Actualitées</a></li>
+        {% if app.user %}
+            <li class="navbar-item">{{ app.user.email }}</li>
+            <li class="navbar-item"><a href="/logout">Deconnexion</a></li>
+          <li class="navbar-item"><a href="/user/{{ app.user.id }}"> test</a></li>
+
+        {% else %}
+            <li class="navbar-item"><a href="/login">Se connecter</a></li>
+        {% endif %}
+    </ul>
+
+
+</nav>
+
+{% block stylesheets %}
+    <style>
+        .navbar {
+            background: #000;
+        }
+
+        .navbar-item {
+            list-style: none;
+            display: inline;
+            padding: 1em;
+        }
+
+        .navbar-item a {
+            color: white;
+        }
+
+        .navbar-item a:hover {
+            color: orangered;
+            text-decoration: none;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}
