@@ -86,7 +86,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private $roles =[];
 
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
@@ -256,15 +256,16 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getRoles(): ?array
+    public function getRoles(): array
     {
         $roles = $this->roles;
-
+        // guarantee every user at least has ROLE_USER
+        // $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
 
-    public function setRoles($roles): self
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 

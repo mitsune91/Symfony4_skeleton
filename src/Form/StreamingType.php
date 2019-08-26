@@ -2,27 +2,28 @@
 
 namespace App\Form;
 
-use App\Entity\Actualite;
+use App\Entity\Streaming;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ActualiteType extends AbstractType
+class StreamingType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('thematique')
-            ->add('contenu')
-
-
+            ->add('titre')
+            ->add('prix')
+            ->add('qualité')
+            ->add('produit_id')
+            ->add('user_id')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Actualite::class,
+            'data_class' => Streaming::class,
         ]);
     }
 }

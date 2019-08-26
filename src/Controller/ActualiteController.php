@@ -33,7 +33,7 @@ class ActualiteController extends AbstractController
         $actualite = new Actualite();
         $form = $this->createForm(ActualiteType::class, $actualite);
         $form->handleRequest($request);
-
+        $actualite->setDatePublication(new \DateTime('now'));
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($actualite);

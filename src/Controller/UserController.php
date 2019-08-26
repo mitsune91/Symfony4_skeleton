@@ -79,6 +79,26 @@ class UserController extends AbstractController
     }
 
     /**
+     * @Route("/{id}/user/rolet", name="user_role", methods={"GET","POST"})
+     */
+    public function toRole(Request $request,User $user)
+    {
+        if ($_POST["toRole"] == "toUser") {
+
+            $user ->setRoles("ROLE_USER");
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+        } else if ($_POST["toRole"] == "toAdmin") {
+
+            $user ->setRoles("ROLE_ADMIN");
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+        }
+    }
+
+    /**
      * @Route("/{id}", name="user_delete", methods={"DELETE"})
      */
     public function delete(Request $request, User $user): Response

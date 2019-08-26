@@ -59,6 +59,17 @@
                 <th>Collection</th>
                 <td>{{ user.collection }}</td>
             </tr>
+        {%if is_granted("ROLE_ADMIN") %}
+        <tr>
+            <form action="{{ path('user_role',{'id': user.id}) }}" method="post">
+                {% if user.roles == ["ROLE_USER"] %}
+                    <button type="submit" class="btn" value="toAdmin" name="toRole">Promouvoir</button>
+                    {% else %}
+                        <button type="submit" class="btn" value="toUSer" name="toRole">Retrograder</button>
+                {% endif %}
+            </form>
+        </tr>
+        {% endif %}
         </tbody>
     </table>
 

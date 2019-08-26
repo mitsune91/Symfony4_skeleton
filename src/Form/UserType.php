@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\CallbackTransformer;
@@ -21,11 +22,23 @@ class UserType extends AbstractType
             ->add('adresse')
             ->add('codePostal')
             ->add('ville')
-            ->add('telephone');
-//            ->add('roles', ChoiceType::class, ['choices' => [
-//                'User' => "ROLE_USER",
-//                'Admin' => "ROLE_ADMIN"]
-//            ]);
+            ->add('telephone')
+            ->add('roles', CollectionType::class, [
+                'allow_delete' => true,
+                'entry_type' => ChoiceType::class,
+                'allow_add' => false,
+                'entry_options' => [
+                    'label' => false,
+                    //     'multiple'=> true,
+                    //   'expanded' => true,
+                    'choices' => [
+                        'Admin' => 'ROLE_ADMIN',
+                        'Super' => 'ROLE_SUPER_ADMIN',
+                        'Aucun' => null
+
+                    ],
+                ],
+            ]);
 //        $builder->get('roles')
 //            ->addModelTransformer(new CallbackTransformer(
 //                function ($tagsAsArray) {

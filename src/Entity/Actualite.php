@@ -29,7 +29,7 @@ class Actualite
     private $contenu;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="date", length=255)
      */
     private $datePublication;
 
@@ -72,12 +72,12 @@ class Actualite
         return $this;
     }
 
-    public function getDatePublication(): ?string
+    public function getDatePublication()
     {
         return $this->datePublication;
     }
 
-    public function setDatePublication(string $datePublication): self
+    public function setDatePublication( $datePublication): self
     {
         $this->datePublication = $datePublication;
 
